@@ -24,7 +24,10 @@ class IDOAuth2(BaseOAuth2):
         url = 'http://localhost:8000/account/user/?' + urlencode({
             'access_token': access_token
         })
+        data = requests.get(url).json()
+        # udata User has `active` property, not `is_active`.
+        data['active'] = data.pop('is_active')
         try:
-            return requests.get(url).json()
+            return data
         except ValueError:
             return None
