@@ -1,4 +1,3 @@
-import json
 import requests
 from social.backends.oauth import BaseOAuth2
 from urllib import urlencode
@@ -24,10 +23,7 @@ class IDOAuth2(BaseOAuth2):
         url = 'http://localhost:8000/account/user/?' + urlencode({
             'access_token': access_token
         })
-        data = requests.get(url).json()
-        # udata User has `active` property, not `is_active`.
-        data['active'] = data.pop('is_active')
         try:
-            return data
+            return requests.get(url).json()
         except ValueError:
             return None

@@ -1,4 +1,4 @@
-from flask import current_app, g, request, redirect
+from flask import g, request, redirect
 from social.apps.flask_app.routes import social_auth
 from social.apps.flask_app.me.models import init_social
 
@@ -26,6 +26,9 @@ def init_app(app):
     def inject_user():
         '''Make current user available on templates'''
         try:
+            # Force a displayable name
+            if not g.user.last_name:
+                g.user.last_name = g.user.email
             return {'user': g.user}
         except AttributeError:
             return {'user': None}
