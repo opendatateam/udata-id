@@ -1,4 +1,3 @@
-import json
 import requests
 from social.backends.oauth import BaseOAuth2
 from urllib import urlencode

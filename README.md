@@ -32,16 +32,13 @@ configuration.
 
     git clone https://github.com/opendatateam/udata-id.git
 
-The project being used by _uData_, ensure that the _udata\_id_ package is
-available from your _udata_ project's _virtualenv_ (eg: `add2virtualenv /path/to/my/udata-id`).
+Activate your **udata** (!) _virtualenv_, and install the _udata-id_ from there:
 
-activate your **_udata_ virtualenv** (eg: `source /path/to/udata/venv/bin/activate`) and install the _udata-id_ requirements within it:
+    pip install -e /path/to/udata-id
 
-    pip install -r requirements.txt
-
-_udata-id_ depends on [Python Social Auth]; add this plugin's settings to your
-uData config (_udata.cfg_) and adapt _social auth_ (installed with requirements)
-config to connect to it:
+_udata-id_ depends on [Python Social Auth] which is installed with the previous
+command; add this plugin's settings to your uData config (_udata.cfg_) and
+adapt _social auth_ (installed with requirements) config to connect to it:
 
     PLUGINS = […, 'id']
     SOCIAL_AUTH_STORAGE = 'social.apps.flask_app.me.models.FlaskStorage'
